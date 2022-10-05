@@ -1,33 +1,37 @@
-// 1º Importar p  React
 import React,{useState} from "react";
-
 //
 import {View,
-        Text,
-        TextInput,
-        TouchableOpacity,
-        StyleSheet
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet
     } from 'react-native'
 import { Button } from "react-native-web";
     export default function Home(){
-        let[tempC,setTempC] = useState();
-        let[tempF,setTempF] = useState(0);
+        let[Nasc,setNasc] = useState();
+        let[Atual,setAtual] = useState();
+        let[Idade,setIdade] = useState();
         
         function Calcular(){
-            let resultado = (9 * tempC + 160) / 5;
-            setTempF(resultado);
+            let resultado = Atual - Nasc;
+            setIdade(resultado);
 
         }
         return(
             <View style={styles.container}>
-                <Text style={styles.titulo}>Conversão de Temperatura</Text>
+                <Text style={styles.titulo} >Converção de Idade</Text>
                 <TextInput 
-                onChangeText={setTempC}
+                onChangeText={setAtual}
                 style={styles.campo}
-                placeholder="Digite a temperatura em C°"
+                placeholder="Digite o ano atual"
                 />
-                <Text style={styles.subtitulo}>Resultado: {tempF} F° </Text>
-                <TouchableOpacity onPress={Calcular} style={styles.Button} >
+                <TextInput 
+                onChangeText={setNasc}
+                style={styles.campo}
+                placeholder="Digite o ano Nascimento"
+                />
+                <Text style={styles.subtitulo}>Sua Idade é aproximadamente: {Idade} </Text>
+                <TouchableOpacity onPress={Calcular} style={styles.Button}>
                     <Text style={styles.buttonText}>Converter</Text>
                 </TouchableOpacity>
 
@@ -35,7 +39,6 @@ import { Button } from "react-native-web";
 
         );
     }
-
     const styles = StyleSheet.create({
         container:{
             flex: 1,
@@ -47,27 +50,35 @@ import { Button } from "react-native-web";
             fontSize: 28,
             fontWeight: 'bold',
             marginBottom: 10,
-            color:'#FFD700'
+            color:'#f01',
+            alignSelf: "center"
         },
         subtitulo:{
-            color:'#FFF',
-            fontSize:15
+            color:'#1e9',
+            fontSize:15,
+            alignSelf: "center",
+            backgroundColor:"#fff",
+            marginTop: 30,
+            backgroundColor: ""
         },
         campo:{
             backgroundColor:'#1F1E25',
-            color:'#FFF',
+            color:'#fff',
             fontSize: 18,
             marginTop: 30,
             borderRadius: 7,
-            padding: 15
-
+            padding: 12,
+            alignSelf: "center",
+            textAlign:"center"
         },
+ 
         Button:{
-            backgroundColor: '#A370F7',
-            padding: 16,
+            backgroundColor: '#000',
+            padding: 15,
             borderRadius:7,
             alignItems:'center',
-            marginTop:20
+            marginTop:20,
+            alignSelf:"center"
         },
         buttonText:{
             color:'#FFF',
